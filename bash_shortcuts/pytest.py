@@ -2,7 +2,13 @@
 from fastcore.script import call_parse
 from subprocess import run
 from typing import Union
-import sys
+import sys, os
+
+def _new_env(key_dict):
+    env = os.environ.copy()
+    for key,value in key_dict.items():
+        env[key.upper()] = value
+    return env
 
 @call_parse
 def run_pytest(
@@ -12,9 +18,9 @@ def run_pytest(
     blocking:bool=True, # CUDA_LAUNCH_BLOCKING
 ):
     "Runs pytest tests"
-    cmd = [f'CUDA_VISIBLE_DEVICES="{cuda}"']
+    env = {"cuda_visible_devices", cuda}
     if blocking:
-        cmd += ['CUDA_LAUNCH_BLOCKING="1"']
+        env['cuda_launch_blocking'] = "1"
     cmd += [f'pytest {f"-{flags} " if flags != "" else ""}{fname}']
-    print(f'Running `{cmd}`')
-    run(cmd, stderr=sys.stderr, stdout=sys.stdout)
+    env = _new_env(env)
+    run(cmd, stderr=sys.stderr, stdout=sys.stdout, env=env)
