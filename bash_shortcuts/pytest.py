@@ -1,5 +1,6 @@
 # Shortcuts relating to pytest
 from fastcore.script import call_parse
+from pathlib import Path
 from subprocess import run
 from typing import Union
 import sys, os
@@ -23,4 +24,4 @@ def run_pytest(
         env['cuda_launch_blocking'] = "1"
     cmd = [f'pytest {f"-{flags} " if flags != "" else ""}{fname}']
     env = _new_env(env)
-    run(cmd, stderr=sys.stderr, stdout=sys.stdout, env=env)
+    run(cmd, stderr=sys.stderr, stdout=sys.stdout, env=env, cwd=Path().cwd())
