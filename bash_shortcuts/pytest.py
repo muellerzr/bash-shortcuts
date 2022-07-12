@@ -21,6 +21,6 @@ def run_pytest(
     env = {"cuda_visible_devices", cuda}
     if blocking:
         env['cuda_launch_blocking'] = "1"
-    cmd += [f'pytest {f"-{flags} " if flags != "" else ""}{fname}']
+    cmd = [f'pytest {f"-{flags} " if flags != "" else ""}{fname}']
     env = _new_env(env)
     run(cmd, stderr=sys.stderr, stdout=sys.stdout, env=env)
