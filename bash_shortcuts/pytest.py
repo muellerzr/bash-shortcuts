@@ -14,7 +14,7 @@ def run_pytest(
     "Runs pytest tests"
     cmd = [f'CUDA_VISIBLE_DEVICES={cuda}']
     if blocking:
-        cmd += "CUDA_LAUNCH_BLOCKING=1"
-    cmd += f'pytest {f"-{flags} " if flags != "" else ""}{fname}'
+        cmd += ["CUDA_LAUNCH_BLOCKING=1"]
+    cmd += [f'pytest {f"-{flags} " if flags != "" else ""}{fname}']
     print(f'Running `{cmd}`')
     run(cmd, stderr=sys.stderr, stdout=sys.stdout)
