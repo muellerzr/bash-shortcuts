@@ -6,7 +6,7 @@ import sys
 
 @call_parse
 def run_pytest(
-    fname=None, # The filenames to test
+    fname, # The filenames to test
     flags="sv", # Flags after `pytest`
     cuda="0,1", # CUDA_VISIBLE_DEVICES flag
     blocking=True, # CUDA_LAUNCH_BLOCKING
