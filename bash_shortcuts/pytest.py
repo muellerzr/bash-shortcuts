@@ -18,7 +18,7 @@ def run_pytest(
     blocking:bool=True, # CUDA_LAUNCH_BLOCKING
 ):
     "Runs pytest tests"
-    env = {"cuda_visible_devices", cuda}
+    env = {"cuda_visible_devices": cuda}
     if blocking:
         env['cuda_launch_blocking'] = "1"
     cmd = [f'pytest {f"-{flags} " if flags != "" else ""}{fname}']
