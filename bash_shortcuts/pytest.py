@@ -6,10 +6,10 @@ import sys
 
 @call_parse
 def run_pytest(
-    fname, # The filenames to test
-    flags="sv", # Flags after `pytest`
-    cuda="0,1", # CUDA_VISIBLE_DEVICES flag
-    blocking=True, # CUDA_LAUNCH_BLOCKING
+    fname:str, # The filenames to test
+    flags:str="sv", # Flags after `pytest`
+    cuda:str="0,1", # CUDA_VISIBLE_DEVICES flag
+    blocking:bool=True, # CUDA_LAUNCH_BLOCKING
 ):
     "Runs pytest tests"
     cmd = [f'CUDA_VISIBLE_DEVICES={cuda}']
