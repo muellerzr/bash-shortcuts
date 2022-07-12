@@ -16,4 +16,5 @@ def run_pytest(
     if blocking:
         cmd += "CUDA_LAUNCH_BLOCKING=1"
     cmd += f'pytest {f"-{flags} " if flags != "" else ""}{fname}'
+    print(f'Running `{cmd}`')
     run(cmd, stderr=sys.stderr, stdout=sys.stdout)
